@@ -20,6 +20,11 @@ None. Specifically:
 - No browsing history, activity, or clicks
 - No analytics, telemetry, crash reporting, or advertising
 
+The table you export is page content, and it is read only while the export
+runs, in your own browser, purely to write your JSON file. It is never sent
+anywhere, never retained by the extension, and no part of it reaches the
+developer. Reading it to produce your file is not collection.
+
 ## Data transmitted
 
 None. The extension makes no network requests of any kind. It contains no
