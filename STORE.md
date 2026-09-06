@@ -16,18 +16,31 @@ Upload the zip at https://chrome.google.com/webstore/devconsole (one-time $5 dev
   Export the ASIN result table on the query editor page to a JSON file, with serial numbers and a timestamped filename.
 - **Detailed description:**
 
-  Click the extension's toolbar icon on the query editor page and every
-  visible row of the ASIN table — serial number,
-  image URL, ASIN, item name, model name and model number — as a JSON file
-  named with the date, time and page number, e.g.
-  ASINS_06-09-2026_10-54-01_page1.json.
+  Open the query editor page, run your query, then click the extension's
+  toolbar icon. Every visible row of the ASIN table is saved to a JSON file
+  on your computer.
 
-  Columns are read from the table header, so extra columns are exported
-  automatically. Nothing is uploaded anywhere: the file is generated in your
-  browser and saved straight to your computer.
+  Each row includes:
+  - sl_no, the serial number in table order
+  - image, the product image URL
+  - ASIN, taken from the product link
+  - item_name, model_name and model_number, unwrapped from the
+    { language_tag:en_IN, value:"..." } format so you get the plain text
+
+  Columns are read from the table header, so any extra column in the table is
+  exported automatically without an update.
+
+  Files are named with the date, time and page number, for example
+  ASINS_06-09-2026_10-54-01_page1.json, so exports from different pages never
+  overwrite each other.
+
+  The extension has no host permissions and runs nothing until you click its
+  icon. It makes no network requests, contains no remote code and no
+  analytics: the JSON file is generated in your browser and saved straight to
+  your computer.
 
 - **Screenshots (required):** at least one, 1280x800 or 640x400 PNG. Open the
-  page with the table, screenshot it with the button visible, crop to size.
+  page with the table, screenshot it, crop to size.
 
 ## 3. Privacy practices tab
 
