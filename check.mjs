@@ -8,7 +8,7 @@ const dom = new JSDOM(html);
 global.document = dom.window.document;
 
 // load content.js body, stubbing the DOM-mutating tail
-const src = readFileSync("/home/sibin/my-works/moglix-auto-search/asin-json-extension/content.js", "utf8")
+const src = readFileSync("/home/sibin/my-works/moglix-auto-search/asin-json-extension/export.js", "utf8")
   .split("function download")[0];
 const { scrape, filename } = await import("data:text/javascript," + encodeURIComponent(src + "\nexport {scrape, filename};"));
 

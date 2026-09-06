@@ -6,7 +6,7 @@ _Last updated: 6 September 2026_
 
 ## What it does
 
-When you click its button, the extension reads the product table already
+When you click the extension's toolbar icon, it reads the product table already
 displayed on the page you are viewing and saves it to a JSON file on your own
 computer. Everything happens locally in your browser.
 
@@ -27,17 +27,17 @@ remote code, no third-party libraries, and no tracking scripts.
 
 ## Data stored
 
-A single on/off setting for the download button, kept in Chrome's own
-`storage.sync` area. It stays in your Chrome profile and is never sent to us.
-Removing the extension removes it.
+None. The extension keeps no settings and no records of any kind.
 
 ## Permissions
 
-- **storage** — remembers the on/off setting above.
-- **Access to `browse-query-editor-eu.aka.amazon.com`** — the only site whose
-  table the extension reads, to add the download button.
-- **Access to `localhost` / `127.0.0.1`** — lets the developer test the same
-  behaviour against a locally served sample page.
+- **activeTab** — when you click the extension's toolbar icon, Chrome grants
+  temporary access to that one tab so the table on it can be read. The access
+  ends when you leave the page, and no other tab is ever accessible.
+- **scripting** — used to run the export script in that tab after you click.
+
+The extension requests no host permissions, so it has no standing access to
+any website and does nothing at all until you click its icon.
 
 ## Contact
 

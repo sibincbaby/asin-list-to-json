@@ -3,7 +3,7 @@
 ## 1. Package
 
     cd asin-json-extension
-    zip -r ../asin-json-extension-1.0.0.zip . -x 'check.mjs' 'icon.svg' 'STORE.md' 'PRIVACY.md' '*.zip'
+    zip -r ../asin-json-extension-1.1.0.zip manifest.json background.js export.js icon*.png
 
 Upload the zip at https://chrome.google.com/webstore/devconsole (one-time $5 developer fee).
 
@@ -11,12 +11,13 @@ Upload the zip at https://chrome.google.com/webstore/devconsole (one-time $5 dev
 
 - **Name:** ASIN List to JSON
 - **Category:** Workflow & Planning
+- **Version:** 1.1.0
 - **Short description (132 max):**
   Export the ASIN result table on the query editor page to a JSON file, with serial numbers and a timestamped filename.
 - **Detailed description:**
 
-  Adds a "Download ASINs as JSON" button to the ASIN result table on the
-  query editor page. One click saves every visible row — serial number,
+  Click the extension's toolbar icon on the query editor page and every
+  visible row of the ASIN table — serial number,
   image URL, ASIN, item name, model name and model number — as a JSON file
   named with the date, time and page number, e.g.
   ASINS_06-09-2026_10-54-01_page1.json.
@@ -32,9 +33,9 @@ Upload the zip at https://chrome.google.com/webstore/devconsole (one-time $5 dev
 
 - **Single purpose:** "Export the product table shown on the query editor page to a JSON file."
 - **Permission justifications** (paste verbatim):
-  - `storage` — "Stores one boolean setting: whether the download button is shown. No user data is stored."
-  - Host `https://browse-query-editor-eu.aka.amazon.com/*` — "The only page containing the ASIN table this extension exports. The content script reads that table and adds the download button."
-  - Host `http://localhost/*`, `http://127.0.0.1/*` — "Used to test the same table markup against a locally served sample page during development."
+  - `activeTab` — "When the user clicks the extension's toolbar icon, the export script needs to read the product table rendered on that one tab. activeTab grants that access only for that click, which is why no host permission is requested."
+  - `scripting` — "Used by chrome.scripting.executeScript to run the export script in the active tab after the user clicks the toolbar icon. It is the only way the extension runs at all."
+  - Host permissions — none requested.
 - **Remote code:** No, this extension does not use remote code.
 - **Data usage:** tick nothing. Then certify all three statements:
   not being sold to third parties / not used for unrelated purposes /
@@ -44,9 +45,10 @@ Upload the zip at https://chrome.google.com/webstore/devconsole (one-time $5 dev
 
 ## 4. Things that slow approval — already handled
 
-- No `<all_urls>`, no broad host permissions — matches are three specific hosts.
-- No `tabs`, `downloads`, `scripting`, or `activeTab` — the download uses a
-  blob URL, which needs no permission.
+- No host permissions at all — `activeTab` means the extension is inert until
+  the user clicks its icon, which avoids the in-depth host-permission review.
+- No `tabs`, `downloads` or `storage` — the download uses a blob URL, which
+  needs no permission, and nothing is persisted.
 - No remote scripts, no bundled libraries, no eval, no analytics.
 - Icons at all four sizes; description under 132 chars; semantic version.
 
