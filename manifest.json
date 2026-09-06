@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "ASIN List to JSON",
+  "version": "1.0.0",
+  "description": "Export the ASIN result table on the query editor page to a JSON file, with serial numbers and a timestamped filename.",
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "action": {
+    "default_title": "ASIN List to JSON",
+    "default_icon": {
+      "16": "icon16.png",
+      "32": "icon32.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    },
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://browse-query-editor-eu.aka.amazon.com/*",
+        "http://localhost/*",
+        "http://127.0.0.1/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
